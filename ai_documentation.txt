@@ -1,6 +1,135 @@
 List of ChatGPT Prompts:
 How to create a tag in GitHub?
+Summary
+
+Commit all your changes.
+
+Create an annotated tag:
+
+git tag -a repo-basic -m "Repository structure complete with LIGO files and notebook"
+
+
+Push the tag to GitHub:
+
+git push origin repo-basic
 
 How to find packages in Binder?
 
+1️⃣ Make sure your environment is included in the repo
+
+Your repo should have the environment.yml file committed and pushed.
+
+You should also have your notebook and Python package (ligotools) pushed.
+
+2️⃣ Log in to the Stat159 DataHub
+
+Open https://datahub.berkeley.edu
+ (or your course Hub).
+
+Navigate to your repository and open your notebook: LOSC_Event_tutorial.ipynb.
+
+3️⃣ Create the environment on the Hub
+
+Open a terminal inside JupyterLab on the Hub.
+
+Run:
+
+# Create the environment from your pushed environment.yml
+conda env create -f environment.yml
+
+
+Activate it:
+
+conda activate ligo
+
+
+Add it as a Jupyter kernel:
+
+python -m ipykernel install --user --name=ligo --display-name "Python (ligo)"
+
+4️⃣ Switch the notebook kernel
+
+In your notebook: Kernel → Change Kernel → Python (ligo)
+
+Run the first few cells to make sure:
+
+Imports like numpy, scipy, matplotlib, h5py, decorator, from ligotools import readligo work.
+
+No errors appear.
+
 How to create an environment.yml for LIGO?
+
+Here’s how to create your environment.yml file for the LIGO assignment, step by step:
+
+🧭 1. Open a Terminal
+
+If you’re in JupyterLab, click:
+
++ Launcher → Terminal
+or
+If you’re using VS Code or your local terminal, just open a terminal window.
+
+📝 2. Create the File
+
+Navigate to your assignment repository (the folder where your notebook and data files are).
+Then run:
+
+touch environment.yml
+
+
+or, if you’re in JupyterLab:
+
+Go to File → New → Text File
+
+Save it as environment.yml
+
+🧩 3. Add the Environment Specifications
+
+Open the environment.yml file and paste something like this:
+
+name: ligo
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.8
+  - numpy=1.16
+  - scipy=1.2
+  - matplotlib=2.2
+  - h5py=2.9
+  - ipykernel
+  - decorator=4.4
+  - pip
+  - pip:
+      - gwpy==0.14
+
+
+💡 These versions match what the original LIGO Binder used (you can confirm via Binder if needed).
+You can round minor versions to X.Y (for example, numpy=1.16 instead of 1.16.4).
+
+🧠 4. (Optional) Test the Environment Locally
+
+If you want to test it on your own system:
+
+conda env create -f environment.yml
+
+
+Then:
+
+conda activate ligo
+
+
+And finally, to make it available in Jupyter:
+
+python -m ipykernel install --user --name=ligo --display-name "Python (ligo)"
+
+🏷️ 5. Commit and Tag It
+
+Once it’s ready, save, then in your repo terminal run:
+
+git add environment.yml
+git commit -m "Add conda environment.yml for LIGO project"
+git push
+git tag conda-env
+git push origin conda-env
