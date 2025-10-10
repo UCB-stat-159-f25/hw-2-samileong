@@ -1,1 +1,6 @@
 List of ChatGPT Prompts:
+How to create a tag in GitHub?
+
+How to find packages in Binder?
+
+How to create an environment.yml for LIGO?
