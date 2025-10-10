@@ -7,4 +7,4 @@ _This repository is public so that Binder can find it. All code and data is base
 
 # Description
 
-This project reorganized the LIGO Gravitational Wave Detection Tutorial Notebook to ensure the repository was reproducible. It i
+This project reorganized the LIGO Gravitational Wave Detection Tutorial Notebook to ensure the repository was reproducible and nicely structured. It installed additional Python packages, the conda environment, and a Binder link.
